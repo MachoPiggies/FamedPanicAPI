@@ -11,17 +11,34 @@ public class PanickingUpdateEvent extends Event {
     private final boolean add;
     private final PanicData data;
     private final Player player;
+    private final Player remover;
 
     public PanickingUpdateEvent(boolean add, PanicData data) {
         this.add = add;
         this.data = data;
         this.player = data.player;
+        this.remover = null;
     }
 
     public PanickingUpdateEvent(boolean add, Player player) {
         this.add = add;
         this.data = null;
         this.player = player;
+        this.remover = null;
+    }
+
+    public PanickingUpdateEvent(boolean add, PanicData data, Player remover) {
+        this.add = add;
+        this.data = data;
+        this.player = data.player;
+        this.remover = remover;
+    }
+
+    public PanickingUpdateEvent(boolean add, Player player, Player remover) {
+        this.add = add;
+        this.data = null;
+        this.player = player;
+        this.remover = remover;
     }
 
     public boolean isAdd() {
@@ -34,6 +51,10 @@ public class PanickingUpdateEvent extends Event {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Player getRemover() {
+        return remover;
     }
 
     public static HandlerList getHandlerList() {
