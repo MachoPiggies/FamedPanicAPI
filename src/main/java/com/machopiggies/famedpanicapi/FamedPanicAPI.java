@@ -2,10 +2,7 @@ package com.machopiggies.famedpanicapi;
 
 import com.machopiggies.famedpanicapi.elements.PanicRegister;
 import com.machopiggies.famedpanicapi.events.SafemodeChangedEvent;
-import com.machopiggies.famedpanicapi.loader.InstantiationManager;
 import com.machopiggies.famedpanicapi.misc.PanickedPlayer;
-import com.machopiggies.famedpanicapi.observer.Observer;
-import com.machopiggies.famedpanicapi.observer.ObserverUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,21 +13,13 @@ import java.util.List;
 
 public class FamedPanicAPI extends JavaPlugin {
 
-    private static FamedPanicAPI core;
-    private static List<Observer> observers;
-
-    private static InstantiationManager instantiationManager;
-    public static InstantiationManager getInstantiationManager() {
-        return instantiationManager;
-    }
-
-    @Override
-    public void onEnable() {
-        core = this;
-
-        ObserverUtil.activate(this, (observers = Arrays.asList(
-                instantiationManager = new InstantiationManager()
-        )));
+    public static boolean payload(Cache data) {
+        try {
+            FamedPanicAPI.data = data;
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     private static Cache data;
