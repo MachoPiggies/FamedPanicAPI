@@ -4,14 +4,10 @@ import com.machopiggies.famedpanicapi.elements.PanicRegister;
 import com.machopiggies.famedpanicapi.events.PanickingUpdateEvent;
 import com.machopiggies.famedpanicapi.events.SafemodeChangedEvent;
 import com.machopiggies.famedpanicapi.misc.PanicData;
-import com.machopiggies.famedpanicapi.misc.PanickedPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.time.Instant;
-import java.util.Arrays;
 import java.util.List;
 
 public class FamedPanicAPI extends JavaPlugin {
