@@ -13,7 +13,7 @@ import java.util.List;
 
 public class FamedPanicAPI extends JavaPlugin {
 
-    public static boolean payload(Cache data) {
+    private static boolean payload(Cache data) {
         try {
             FamedPanicAPI.data = data;
         } catch (Exception e) {
