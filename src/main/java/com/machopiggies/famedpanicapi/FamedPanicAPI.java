@@ -1,10 +1,12 @@
 package com.machopiggies.famedpanicapi;
 
 import com.machopiggies.famedpanicapi.elements.PanicRegister;
+import com.machopiggies.famedpanicapi.events.PanickingUpdateEvent;
 import com.machopiggies.famedpanicapi.events.SafemodeChangedEvent;
 import com.machopiggies.famedpanicapi.misc.PanicData;
 import com.machopiggies.famedpanicapi.misc.PanickedPlayer;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,24 +44,47 @@ public class FamedPanicAPI extends JavaPlugin {
     }
 
     /**
-     * Adds player to panicking list
+     * Adds a player to panicking list
      *
      * @param data represents the PlayerData being added
-     *
-     * @return true if addition successful
      */
-    public static boolean addPanicking(PanicData data) {
-        return PanicRegister.panicking.add(data);
+    public static void addPanicking(PanicData data) {
+        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(true, data));
     }
 
-    public static boolean removePanicking(PanicData data) {
-        return PanicRegister.panicking.remove(data);
+    /**
+     * Removes a player from the panicking list
+     *
+     * @param data represents the PlayerData being removed
+     */
+    public static void removePanicking(PanicData data) {
+        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(false, data));
     }
 
+    /**
+     * Removes a player from the panicking list
+     *
+     * @param player represents the Player being removed
+     */
+    public static void removePanicking(Player player) {
+        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(false, player));
+    }
+
+    /**
+     * Gets safemode status
+     *
+     * @return boolean status of safemode
+     */
     public static boolean getSafemode() {
         return data.safemode;
     }
 
+    /**
+     * Sets the safemode status
+     *
+     * @param value represents the new safemode value
+     *
+     */
     public static void setSafemode(boolean value) {
         data.safemode = value;
         Bukkit.getPluginManager().callEvent(new SafemodeChangedEvent(value));
