@@ -8,18 +8,12 @@ import java.util.Map;
 public class MessageParsingEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
-    private final String identifier;
     private String message;
     private final Map<String, String> placeholders;
 
-    public MessageParsingEvent(String identifier, String message, Map<String, String> placeholders) {
-        this.identifier = identifier;
+    public MessageParsingEvent(String message, Map<String, String> placeholders) {
         this.message = message;
         this.placeholders = placeholders;
-    }
-
-    public String getIdentifier() {
-        return identifier;
     }
 
     public String getMessage() {
