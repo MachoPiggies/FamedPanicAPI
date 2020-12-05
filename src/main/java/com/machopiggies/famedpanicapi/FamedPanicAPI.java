@@ -45,7 +45,7 @@ public class FamedPanicAPI extends JavaPlugin {
         Bukkit.getPluginManager().callEvent(new SafemodeChangedEvent(value));
     }
 
-    public static class Cache {
+    private static class Cache {
         public boolean safemode;
 
         public Cache(boolean safemode) {
