@@ -32,6 +32,10 @@ public class PanickingUpdateEvent extends Event {
         return data;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     public static HandlerList getHandlerList() {
         return handlers;
     }
