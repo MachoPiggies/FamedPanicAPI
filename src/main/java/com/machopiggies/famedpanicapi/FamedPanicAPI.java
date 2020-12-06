@@ -3,6 +3,7 @@ package com.machopiggies.famedpanicapi;
 import com.machopiggies.famedpanicapi.elements.PanicRegister;
 import com.machopiggies.famedpanicapi.events.PanickingUpdateEvent;
 import com.machopiggies.famedpanicapi.events.SafemodeChangedEvent;
+import com.machopiggies.famedpanicapi.misc.APISettings;
 import com.machopiggies.famedpanicapi.misc.PanicData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,23 +15,16 @@ import java.util.List;
 
 public class FamedPanicAPI extends JavaPlugin {
 
-    /**
-     * Instantiates the API with the information it needs for the base methods. This should not be being accessed by you
-     *
-     * @param data represents the incoming data payload from the FamedPanic plugin
-     *
-     * @return the success status of the payload
-     */
-    private static boolean payload(Cache data) {
+    private static boolean a(Cache a) {
         try {
-            FamedPanicAPI.data = data;
-        } catch (Exception e) {
+            FamedPanicAPI.a = a;
+        } catch (Exception b) {
             return false;
         }
         return true;
     }
 
-    private static Cache data;
+    private static Cache a;
 
     /**
      * Gets a list of all panicking players
@@ -74,7 +68,7 @@ public class FamedPanicAPI extends JavaPlugin {
      * @return boolean status of safemode
      */
     public static boolean getSafemode() {
-        return data.safemode;
+        return a.safemode;
     }
 
     /**
@@ -84,7 +78,7 @@ public class FamedPanicAPI extends JavaPlugin {
      *
      */
     public static void setSafemode(boolean value) {
-        data.safemode = value;
+        a.safemode = value;
         Bukkit.getPluginManager().callEvent(new SafemodeChangedEvent(value));
     }
 
@@ -94,13 +88,15 @@ public class FamedPanicAPI extends JavaPlugin {
         public Settings settings;
         public ActionPreferences prefs;
         public TitleSettings titleSettings;
+        public APISettings apiSettings;
 
-        public Cache(boolean safemode, boolean debug, Settings settings, ActionPreferences prefs, TitleSettings titleSettings) {
+        public Cache(boolean safemode, boolean debug, Settings settings, ActionPreferences prefs, TitleSettings titleSettings, APISettings apiSettings) {
             this.safemode = safemode;
             this.debug = debug;
             this.settings = settings;
             this.prefs = prefs;
             this.titleSettings = titleSettings;
+            this.apiSettings = apiSettings;
         }
 
         public static class Settings {
