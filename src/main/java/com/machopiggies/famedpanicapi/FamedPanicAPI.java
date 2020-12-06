@@ -88,18 +88,20 @@ public class FamedPanicAPI extends JavaPlugin {
         public Settings settings;
         public ActionPreferences prefs;
         public TitleSettings titleSettings;
+        public AuthSettings auth;
         public APISettings apiSettings;
 
-        public Cache(boolean safemode, boolean debug, Settings settings, ActionPreferences prefs, TitleSettings titleSettings, APISettings apiSettings) {
+        public Cache(boolean safemode, boolean debug, Settings settings, ActionPreferences prefs, TitleSettings titleSettings, AuthSettings auth, APISettings apiSettings) {
             this.safemode = safemode;
             this.debug = debug;
             this.settings = settings;
             this.prefs = prefs;
             this.titleSettings = titleSettings;
+            this.auth = auth;
             this.apiSettings = apiSettings;
         }
 
-        public static class Settings {
+        private static class Settings {
             public boolean bungee;
             public boolean showTitle;
             public boolean savePanicking;
@@ -137,7 +139,7 @@ public class FamedPanicAPI extends JavaPlugin {
                 );
             }
 
-            public static class PanicInspectorSettings {
+            private static class PanicInspectorSettings {
                 public boolean enabled;
                 public String vanishCmd;
                 public String unvanishCmd;
@@ -153,7 +155,7 @@ public class FamedPanicAPI extends JavaPlugin {
                 }
             }
 
-            public static class GuiMenuSettings {
+            private static class GuiMenuSettings {
                 public boolean enabled;
                 public boolean useBorder;
                 public String borderColor;
@@ -170,7 +172,7 @@ public class FamedPanicAPI extends JavaPlugin {
             }
         }
 
-        public static class ActionPreferences {
+        private static class ActionPreferences {
             public boolean disableMovement;
             public boolean stopOpening;
             public boolean stopDropping;
@@ -200,7 +202,17 @@ public class FamedPanicAPI extends JavaPlugin {
             }
         }
 
-        public static class TitleSettings {
+        private static class AuthSettings {
+            public String discord;
+            public String slack;
+
+            public AuthSettings(String discord, String slack) {
+                this.discord = discord;
+                this.slack = slack;
+            }
+        }
+
+        private static class TitleSettings {
             public String title;
             public String subtitle;
 
