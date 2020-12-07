@@ -214,7 +214,7 @@ public class FamedPanicAPI extends JavaPlugin {
             }
         }
 
-        public static class AuthPrefs {
+        private static class AuthPrefs {
             public Discord discord;
             public Slack slack;
 
@@ -228,7 +228,7 @@ public class FamedPanicAPI extends JavaPlugin {
                 slack = new Slack(slackEnabled, slackWebhookURL, useBlock, blockAltEnter, blockAltLeave);
             }
 
-            public static class Discord {
+            private static class Discord {
                 public boolean enabled;
                 public String webhookURL;
                 public boolean useEmbed;
@@ -246,7 +246,7 @@ public class FamedPanicAPI extends JavaPlugin {
                 }
             }
 
-            public static class Slack {
+            private static class Slack {
                 public boolean enabled;
                 public String webhookURL;
                 public boolean useBlock;

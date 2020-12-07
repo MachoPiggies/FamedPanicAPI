@@ -1,6 +1,7 @@
 package com.machopiggies.famedpanicapi.events;
 
 import com.machopiggies.famedpanicapi.misc.PanicData;
+import com.machopiggies.famedpanicapi.misc.Request;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
