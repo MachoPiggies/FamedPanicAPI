@@ -165,6 +165,18 @@ public class FamedPanicAPI extends JavaPlugin {
                 );
             }
 
+            public Settings(boolean bungee, boolean showTitle, boolean savePanicking,
+                            long defaultCooldown, boolean allowStaffTeleport, GuiMenuSettings guis,
+                            PanicInspectorSettings panicInspector) {
+                this.bungee = bungee;
+                this.showTitle = showTitle;
+                this.savePanicking = savePanicking;
+                this.defaultCooldown = defaultCooldown;
+                this.allowStaffTeleport = allowStaffTeleport;
+                this.guis = guis;
+                this.panicInspector = panicInspector;
+            }
+
             private static class PanicInspectorSettings {
                 public boolean enabled;
                 public String vanishCmd;
