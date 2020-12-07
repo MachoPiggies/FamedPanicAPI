@@ -65,7 +65,7 @@ public class FamedPanicAPI extends JavaPlugin {
         obj.add("c", speed);
         obj.addProperty("d", data.time);
 
-        Bukkit.getPluginManager().callEvent(new Request(Request.A.a, obj.toString().getBytes(StandardCharsets.UTF_8)));
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.b, obj.toString().getBytes(StandardCharsets.UTF_8)));
     }
 
     /**
