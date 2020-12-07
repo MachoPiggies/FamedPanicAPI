@@ -264,6 +264,11 @@ public class FamedPanicAPI extends JavaPlugin {
                 slack = new Slack(slackEnabled, slackWebhookURL, useBlock, blockAltEnter, blockAltLeave);
             }
 
+            public AuthPrefs(Discord discord, Slack slack) {
+                this.discord = discord;
+                this.slack = slack;
+            }
+
             private static class Discord {
                 public boolean enabled;
                 public String webhookURL;
