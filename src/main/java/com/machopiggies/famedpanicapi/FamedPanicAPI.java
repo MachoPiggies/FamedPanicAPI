@@ -88,16 +88,18 @@ public class FamedPanicAPI extends JavaPlugin {
         public Settings settings;
         public ActionPreferences prefs;
         public TitleSettings titleSettings;
-        public AuthSettings auth;
+        public AuthSecrets auth;
+        public AuthPrefs authPrefs;
         public APISettings apiSettings;
 
-        public Cache(boolean safemode, boolean debug, Settings settings, ActionPreferences prefs, TitleSettings titleSettings, AuthSettings auth, APISettings apiSettings) {
+        public Cache(boolean safemode, boolean debug, Settings settings, ActionPreferences prefs, TitleSettings titleSettings, AuthSecrets auth, AuthPrefs authPrefs, APISettings apiSettings) {
             this.safemode = safemode;
             this.debug = debug;
             this.settings = settings;
             this.prefs = prefs;
             this.titleSettings = titleSettings;
             this.auth = auth;
+            this.authPrefs = authPrefs;
             this.apiSettings = apiSettings;
         }
 
@@ -202,11 +204,11 @@ public class FamedPanicAPI extends JavaPlugin {
             }
         }
 
-        private static class AuthSettings {
+        private static class AuthSecrets {
             public String discord;
             public String slack;
 
-            public AuthSettings(String discord, String slack) {
+            public AuthSecrets(String discord, String slack) {
                 this.discord = discord;
                 this.slack = slack;
             }
