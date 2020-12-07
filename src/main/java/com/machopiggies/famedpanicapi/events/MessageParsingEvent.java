@@ -5,7 +5,7 @@ import org.bukkit.event.HandlerList;
 
 import java.util.Map;
 
-public class MessageParsingEvent extends Event {
+public class MessageParsingEvent extends FPAEvent {
 
     private static final HandlerList handlers = new HandlerList();
     private String message;
@@ -35,5 +35,10 @@ public class MessageParsingEvent extends Event {
     @Override
     public HandlerList getHandlers() {
         return handlers;
+    }
+
+    @Override
+    boolean isBefore() {
+        return isBefore;
     }
 }

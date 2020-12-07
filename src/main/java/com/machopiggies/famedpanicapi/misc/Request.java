@@ -4,7 +4,9 @@
 //
 // All functionality of this class is built into the API
 // Using this will cause issues with events and functions of the API, affecting other plugins hooked into it
+//
 // To discourage use, this class has been obfuscated and no documentation on it will be officially provided
+// which should stop beginner/intermediate coders from trying to use Request without knowledge of what it is
 //
 
 package com.machopiggies.famedpanicapi.misc;
@@ -12,6 +14,7 @@ package com.machopiggies.famedpanicapi.misc;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
+@Deprecated
 public class Request extends Event {
 
     private static final HandlerList handlers = new HandlerList();

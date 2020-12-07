@@ -1,16 +1,19 @@
 package com.machopiggies.famedpanicapi;
 
+import com.google.gson.JsonObject;
 import com.machopiggies.famedpanicapi.elements.PanicRegister;
 import com.machopiggies.famedpanicapi.events.PanickingUpdateEvent;
 import com.machopiggies.famedpanicapi.events.SafemodeChangedEvent;
 import com.machopiggies.famedpanicapi.misc.APISettings;
 import com.machopiggies.famedpanicapi.misc.PanicData;
+import com.machopiggies.famedpanicapi.misc.Request;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class FamedPanicAPI extends JavaPlugin {
@@ -41,7 +44,28 @@ public class FamedPanicAPI extends JavaPlugin {
      * @param data represents the PlayerData being added
      */
     public static void addPanicking(PanicData data) {
-        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(true, data));
+        JsonObject loc = new JsonObject();
+        loc.addProperty("a", data.location.getWorld().getUID().toString());
+        loc.addProperty("b", true);
+        loc.addProperty("c", data.location.getX());
+        loc.addProperty("d", data.location.getY());
+        loc.addProperty("e", data.location.getZ());
+        loc.addProperty("f", data.location.getYaw());
+        loc.addProperty("g", data.location.getPitch());
+
+        JsonObject speed = new JsonObject();
+        speed.addProperty("a", data.settings.speed);
+        speed.addProperty("b", data.settings.flyspeed);
+        speed.addProperty("d", data.settings.flying);
+        speed.addProperty("c", data.settings.allowedFlying);
+
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", data.player.getUniqueId().toString());
+        obj.add("b", loc);
+        obj.add("c", speed);
+        obj.addProperty("d", data.time);
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.a, obj.toString().getBytes(StandardCharsets.UTF_8)));
     }
 
     /**
@@ -50,7 +74,7 @@ public class FamedPanicAPI extends JavaPlugin {
      * @param data represents the PlayerData being removed
      */
     public static void removePanicking(PanicData data) {
-        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(false, data));
+//        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(false, data));
     }
 
     /**
@@ -59,7 +83,7 @@ public class FamedPanicAPI extends JavaPlugin {
      * @param player represents the Player being removed
      */
     public static void removePanicking(Player player) {
-        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(false, player));
+//        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(false, player));
     }
 
     /**

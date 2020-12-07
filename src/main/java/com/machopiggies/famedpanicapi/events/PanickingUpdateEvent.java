@@ -7,7 +7,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class PanickingUpdateEvent extends Event implements Cancellable {
+public class PanickingUpdateEvent extends FPAEvent implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
     private final boolean add;
@@ -17,7 +17,8 @@ public class PanickingUpdateEvent extends Event implements Cancellable {
 
     private boolean cancelled;
 
-    public PanickingUpdateEvent(boolean add, PanicData data) {
+    public PanickingUpdateEvent(boolean pre, boolean add, PanicData data) {
+        isBefore = pre;
         this.add = add;
         this.data = data;
         this.player = data.player;
@@ -25,7 +26,8 @@ public class PanickingUpdateEvent extends Event implements Cancellable {
         cancelled = false;
     }
 
-    public PanickingUpdateEvent(boolean add, Player player) {
+    public PanickingUpdateEvent(boolean pre, boolean add, Player player) {
+        isBefore = pre;
         this.add = add;
         this.data = null;
         this.player = player;
@@ -33,7 +35,8 @@ public class PanickingUpdateEvent extends Event implements Cancellable {
         cancelled = false;
     }
 
-    public PanickingUpdateEvent(boolean add, PanicData data, Player remover) {
+    public PanickingUpdateEvent(boolean pre, boolean add, PanicData data, Player remover) {
+        isBefore = pre;
         this.add = add;
         this.data = data;
         this.player = data.player;
@@ -41,7 +44,8 @@ public class PanickingUpdateEvent extends Event implements Cancellable {
         cancelled = false;
     }
 
-    public PanickingUpdateEvent(boolean add, Player player, Player remover) {
+    public PanickingUpdateEvent(boolean pre, boolean add, Player player, Player remover) {
+        isBefore = pre;
         this.add = add;
         this.data = null;
         this.player = player;
@@ -82,5 +86,10 @@ public class PanickingUpdateEvent extends Event implements Cancellable {
     @Override
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
+    }
+
+    @Override
+    boolean isBefore() {
+        return isBefore;
     }
 }

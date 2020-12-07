@@ -4,7 +4,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 
-public class SafemodeChangedEvent extends Event {
+public class SafemodeChangedEvent extends FPAEvent {
 
     private static final HandlerList handlers = new HandlerList();
     private final boolean newValue;
@@ -24,5 +24,10 @@ public class SafemodeChangedEvent extends Event {
     @Override
     public HandlerList getHandlers() {
         return handlers;
+    }
+
+    @Override
+    boolean isBefore() {
+        return isBefore;
     }
 }
