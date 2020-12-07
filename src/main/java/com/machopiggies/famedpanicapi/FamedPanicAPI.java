@@ -212,6 +212,56 @@ public class FamedPanicAPI extends JavaPlugin {
             }
         }
 
+        public static class AuthPrefs {
+            public Discord discord;
+            public Slack slack;
+
+            public AuthPrefs(boolean discordEnabled, String discordWebhookURL, boolean useEmbed,
+                             String embedAltEnter, String embedAltLeave, String color,
+
+                             boolean slackEnabled, String slackWebhookURL, boolean useBlock,
+                             String blockAltEnter, String blockAltLeave
+            ) {
+                discord = new Discord(discordEnabled, discordWebhookURL, useEmbed, embedAltEnter, embedAltLeave, color);
+                slack = new Slack(slackEnabled, slackWebhookURL, useBlock, blockAltEnter, blockAltLeave);
+            }
+
+            public static class Discord {
+                public boolean enabled;
+                public String webhookURL;
+                public boolean useEmbed;
+                public String embedAltEnter;
+                public String embedAltLeave;
+                public String color;
+
+                public Discord(boolean enabled, String webhookURL, boolean useEmbed, String embedAltEnter, String embedAltLeave, String color) {
+                    this.enabled = enabled;
+                    this.webhookURL = webhookURL;
+                    this.useEmbed = useEmbed;
+                    this.embedAltEnter = embedAltEnter;
+                    this.embedAltLeave = embedAltLeave;
+                    this.color = color;
+                }
+            }
+
+            public static class Slack {
+                public boolean enabled;
+                public String webhookURL;
+                public boolean useBlock;
+                public String blockAltEnter;
+                public String blockAltLeave;
+
+                public Slack(boolean enabled, String webhookURL, boolean useBlock, String blockAltEnter, String blockAltLeave) {
+                    this.enabled = enabled;
+                    this.webhookURL = webhookURL;
+                    this.useBlock = useBlock;
+                    this.blockAltEnter = blockAltEnter;
+                    this.blockAltLeave = blockAltLeave;
+
+                }
+            }
+        }
+
         private static class TitleSettings {
             public String title;
             public String subtitle;
