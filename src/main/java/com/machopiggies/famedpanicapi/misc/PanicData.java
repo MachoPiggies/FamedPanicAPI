@@ -43,6 +43,14 @@ public class PanicData {
         );
     }
 
+    public PanicData(Player player, UUID uuid, long time, Location location, Settings settings) {
+        this.player = player;
+        this.uuid = uuid;
+        this.time = time;
+        this.location = location;
+        this.settings = settings;
+    }
+
     public static class Settings {
         public float speed;
         public float flyspeed;
