@@ -1,13 +1,14 @@
 package com.machopiggies.famedpanicapi.events;
 
-import org.bukkit.event.Event;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
 
-public class SafemodeChangedEvent extends FPAEvent {
+public class SafemodeChangedEvent extends FPAEvent implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
     private final boolean newValue;
+
+    private boolean cancelled;
 
     public SafemodeChangedEvent(boolean newValue) {
         this.newValue = newValue;
@@ -29,5 +30,15 @@ public class SafemodeChangedEvent extends FPAEvent {
     @Override
     boolean isBefore() {
         return isBefore;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 }

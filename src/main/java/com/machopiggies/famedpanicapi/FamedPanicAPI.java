@@ -69,21 +69,29 @@ public class FamedPanicAPI extends JavaPlugin {
     }
 
     /**
-     * Removes a player from the panicking list
-     *
-     * @param data represents the PlayerData being removed
-     */
-    public static void removePanicking(PanicData data) {
-//        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(false, data));
-    }
-
-    /**
-     * Removes a player from the panicking list
+     * Removes a player from the panicking list, action sender is set to console
      *
      * @param player represents the Player being removed
      */
     public static void removePanicking(Player player) {
-//        Bukkit.getPluginManager().callEvent(new PanickingUpdateEvent(false, player));
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", player.getUniqueId().toString());
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.b, obj.toString().getBytes(StandardCharsets.UTF_8)));
+    }
+
+    /**
+     * Removes a player from the panicking list with a given player
+     *
+     * @param player represents the Player being removed
+     * @param staff represents the Player removing the panic, when null, will default to console
+     */
+    public static void removePanicking(Player player, Player staff) {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", player.getUniqueId().toString());
+        obj.addProperty("b", staff != null ? staff.getUniqueId().toString() : "null");
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.c, obj.toString().getBytes(StandardCharsets.UTF_8)));
     }
 
     /**
@@ -102,8 +110,25 @@ public class FamedPanicAPI extends JavaPlugin {
      *
      */
     public static void setSafemode(boolean value) {
-        a.safemode = value;
-        Bukkit.getPluginManager().callEvent(new SafemodeChangedEvent(value));
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", value);
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.c, obj.toString().getBytes(StandardCharsets.UTF_8)));
+    }
+
+    /**
+     * Sets the safemode status
+     *
+     * @param value represents the new safemode value
+     * @param staff is the player responsible for this change, if null, will default to console
+     *
+     */
+    public static void setSafemode(boolean value, Player staff) {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", value);
+        obj.addProperty("b", staff != null ? staff.getUniqueId().toString() : "null");
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.d, obj.toString().getBytes(StandardCharsets.UTF_8)));
     }
 
     private static class Cache {
