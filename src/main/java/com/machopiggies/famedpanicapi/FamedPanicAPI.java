@@ -2,8 +2,6 @@ package com.machopiggies.famedpanicapi;
 
 import com.google.gson.JsonObject;
 import com.machopiggies.famedpanicapi.elements.PanicRegister;
-import com.machopiggies.famedpanicapi.events.PanickingUpdateEvent;
-import com.machopiggies.famedpanicapi.events.SafemodeChangedEvent;
 import com.machopiggies.famedpanicapi.misc.APISettings;
 import com.machopiggies.famedpanicapi.misc.PanicData;
 import com.machopiggies.famedpanicapi.misc.Request;
@@ -114,21 +112,6 @@ public class FamedPanicAPI extends JavaPlugin {
         obj.addProperty("a", value);
 
         Bukkit.getPluginManager().callEvent(new Request(Request.A.c, obj.toString().getBytes(StandardCharsets.UTF_8)));
-    }
-
-    /**
-     * Sets the safemode status
-     *
-     * @param value represents the new safemode value
-     * @param staff is the player responsible for this change, if null, will default to console
-     *
-     */
-    public static void setSafemode(boolean value, Player staff) {
-        JsonObject obj = new JsonObject();
-        obj.addProperty("a", value);
-        obj.addProperty("b", staff != null ? staff.getUniqueId().toString() : "null");
-
-        Bukkit.getPluginManager().callEvent(new Request(Request.A.d, obj.toString().getBytes(StandardCharsets.UTF_8)));
     }
 
     private static class Cache {
