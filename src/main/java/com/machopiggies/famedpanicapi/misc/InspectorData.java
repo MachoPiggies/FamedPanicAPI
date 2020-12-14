@@ -21,6 +21,14 @@ public class InspectorData {
         time = Instant.now().getEpochSecond();
     }
 
+    public InspectorData(Player player, Player target, Location origin, GameMode gamemode, long time) {
+        this.player = player;
+        this.target = target;
+        this.origin = origin;
+        this.gamemode = gamemode;
+        this.time = time;
+    }
+
     public enum RemoveReason {
         PANIC_CANCELLED,
         COMMAND,

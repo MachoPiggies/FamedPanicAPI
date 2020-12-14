@@ -1,8 +1,10 @@
 package com.machopiggies.famedpanicapi;
 
 import com.google.gson.JsonObject;
+import com.machopiggies.famedpanicapi.elements.InspectorRegister;
 import com.machopiggies.famedpanicapi.elements.PanicRegister;
 import com.machopiggies.famedpanicapi.misc.APISettings;
+import com.machopiggies.famedpanicapi.misc.InspectorData;
 import com.machopiggies.famedpanicapi.misc.PanicData;
 import com.machopiggies.famedpanicapi.misc.Request;
 import org.bukkit.Bukkit;
@@ -91,6 +93,15 @@ public class FamedPanicAPI extends JavaPlugin {
 
         Bukkit.getPluginManager().callEvent(new Request(Request.A.c, obj.toString().getBytes(StandardCharsets.UTF_8)));
     }
+
+    /**
+     * Gets a list of all panicking players
+     *
+     * @return List<PanicData> of panicking players
+     */
+    public static List<InspectorData> getInspectors() {
+        return InspectorRegister.inspectors;
+    } //todo add/remove inspector methods
 
     /**
      * Gets safemode status
