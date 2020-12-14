@@ -10,11 +10,11 @@ public class PlayerInspectorLeaveEvent extends FPAEvent implements Cancellable {
     private final Player player;
     private final InspectorData data;
     private final InspectorData.RemoveReason reason;
-    private long delay;
+    private int delay;
 
     private boolean cancelled;
 
-    public PlayerInspectorLeaveEvent(Player player, InspectorData data, InspectorData.RemoveReason reason, long delay) {
+    public PlayerInspectorLeaveEvent(Player player, InspectorData data, InspectorData.RemoveReason reason, int delay) {
         this.player = player;
         this.data = data;
         this.reason = reason;
@@ -33,11 +33,11 @@ public class PlayerInspectorLeaveEvent extends FPAEvent implements Cancellable {
         return reason;
     }
 
-    public long getDelay() {
+    public int getDelay() {
         return delay;
     }
 
-    public void setDelay(long delay) {
+    public void setDelay(int delay) {
         this.delay = delay;
     }
 
