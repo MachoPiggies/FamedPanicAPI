@@ -11,7 +11,7 @@ public class InspectorData {
     public Player target;
     public Location origin;
     public GameMode gamemode;
-    public Long time;
+    public long time;
 
     public InspectorData(Player player, Player target) {
         this.player = player;
