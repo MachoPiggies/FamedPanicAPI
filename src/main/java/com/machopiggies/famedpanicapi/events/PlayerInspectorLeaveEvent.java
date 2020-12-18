@@ -14,10 +14,10 @@ public class PlayerInspectorLeaveEvent extends FPAEvent implements Cancellable {
 
     private boolean cancelled;
 
-    public PlayerInspectorLeaveEvent(Player player, InspectorData data, InspectorData.RemoveReason reason, int delay) {
+    public PlayerInspectorLeaveEvent(Player player, InspectorData data, int reason, int delay) {
         this.player = player;
         this.data = data;
-        this.reason = reason;
+        this.reason = InspectorData.RemoveReason.values()[reason];
         this.delay = delay;
     }
 
