@@ -101,7 +101,40 @@ public class FamedPanicAPI extends JavaPlugin {
      */
     public static List<InspectorData> getInspectors() {
         return InspectorRegister.inspectors;
-    } //todo add/remove inspector methods
+    }
+
+    /**
+     * Makes a player inspect another
+     *
+     * @param player represents the Player being made an inspector
+     * @param target represents the Player to inspect
+     */
+    public static void addInspector(Player player, Player target) {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", player.getUniqueId().toString());
+
+        JsonObject obj1 = new JsonObject();
+        obj1.addProperty("a", player.getUniqueId().toString());
+        obj1.addProperty("b", target.getUniqueId().toString());
+
+        obj.add("b", obj1);
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.e, obj.toString().getBytes(StandardCharsets.UTF_8)));
+    }
+
+    /**
+     * Removes a player from inspector mode
+     *
+     * @param player represents the Player being removed from inspector mode
+     * @param reason represents the {@link com.machopiggies.famedpanicapi.misc.InspectorData.RemoveReason} the player is being removed
+     */
+    public static void removeInspector(Player player, InspectorData.RemoveReason reason) {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", player.getUniqueId().toString());
+        obj.addProperty("b", reason.ordinal());
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.f, obj.toString().getBytes(StandardCharsets.UTF_8)));
+    }
 
     /**
      * Gets safemode status
@@ -122,7 +155,35 @@ public class FamedPanicAPI extends JavaPlugin {
         JsonObject obj = new JsonObject();
         obj.addProperty("a", value);
 
-        Bukkit.getPluginManager().callEvent(new Request(Request.A.c, obj.toString().getBytes(StandardCharsets.UTF_8)));
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.d, obj.toString().getBytes(StandardCharsets.UTF_8)));
+    }
+
+    /**
+     * Removes a player from inspector mode
+     *
+     * @deprecated This method is dangerous and should only be used as a last resort
+     *
+     * @param player represents the Player being removed from panic mode
+     */
+    public static void resetPanic(Player player) {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", player.getUniqueId().toString());
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.g, obj.toString().getBytes(StandardCharsets.UTF_8)));
+    }
+
+    /**
+     * Removes a player from inspector mode
+     *
+     * @deprecated This method is dangerous and should only be used as a last resort
+     *
+     * @param player represents the Player being removed from inspector mode
+     */
+    public static void resetInspector(Player player) {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("a", player.getUniqueId().toString());
+
+        Bukkit.getPluginManager().callEvent(new Request(Request.A.h, obj.toString().getBytes(StandardCharsets.UTF_8)));
     }
 
     private static class Cache {
