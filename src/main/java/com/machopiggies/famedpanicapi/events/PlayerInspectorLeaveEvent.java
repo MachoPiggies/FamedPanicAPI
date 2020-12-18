@@ -2,17 +2,14 @@ package com.machopiggies.famedpanicapi.events;
 
 import com.machopiggies.famedpanicapi.misc.InspectorData;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
-public class PlayerInspectorLeaveEvent extends FPAEvent implements Cancellable {
+public class PlayerInspectorLeaveEvent extends FPAEvent {
     private static final HandlerList handlers = new HandlerList();
     private final Player player;
     private final InspectorData data;
     private final InspectorData.RemoveReason reason;
     private int delay;
-
-    private boolean cancelled;
 
     public PlayerInspectorLeaveEvent(Player player, InspectorData data, int reason, int delay) {
         this.player = player;
@@ -53,15 +50,5 @@ public class PlayerInspectorLeaveEvent extends FPAEvent implements Cancellable {
     @Override
     boolean isBefore() {
         return isBefore;
-    }
-
-    @Override
-    public boolean isCancelled() {
-        return cancelled;
-    }
-
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
     }
 }
