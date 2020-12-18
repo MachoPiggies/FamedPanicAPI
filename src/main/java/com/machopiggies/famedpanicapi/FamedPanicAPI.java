@@ -300,13 +300,11 @@ public class FamedPanicAPI extends JavaPlugin {
             public boolean stopDamager;
             public boolean stopDamagee;
             public List<Command> stopCommands;
-            public boolean stopChat;
 
             public ActionPreferences(boolean disableMovement,
                                      boolean stopOpening, boolean stopDropping, boolean stopPickup,
                                      boolean stopInventoryMoving, boolean stopWorldInteraction,
-                                     boolean stopDamager, boolean stopDamagee, List<Command> stopCommands,
-                                     boolean stopChat) {
+                                     boolean stopDamager, boolean stopDamagee, List<Command> stopCommands) {
                 this.disableMovement = disableMovement;
                 this.stopOpening = stopOpening;
                 this.stopDropping = stopDropping;
@@ -316,7 +314,6 @@ public class FamedPanicAPI extends JavaPlugin {
                 this.stopDamager = stopDamager;
                 this.stopDamagee = stopDamagee;
                 this.stopCommands = stopCommands;
-                this.stopChat = stopChat;
             }
         }
 
