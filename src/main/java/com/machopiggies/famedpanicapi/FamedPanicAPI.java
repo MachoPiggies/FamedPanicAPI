@@ -97,7 +97,7 @@ public class FamedPanicAPI extends JavaPlugin {
     /**
      * Gets a list of all panicking players
      *
-     * @return List<PanicData> of panicking players
+     * @return {@link List<PanicData>} of panicking players
      */
     public static List<InspectorData> getInspectors() {
         return InspectorRegister.inspectors;
